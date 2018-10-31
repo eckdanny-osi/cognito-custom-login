@@ -4,6 +4,8 @@ import path from 'path'
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
 
+const RE_CSSMODULE = /\.module\.css$/
+
 export default {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
@@ -100,6 +102,7 @@ export default {
       },
       {
         test: /(\.css|\.scss|\.sass)$/,
+        exclude: RE_CSSMODULE,
         use: [
           'style-loader',
           {
@@ -119,6 +122,28 @@ export default {
             loader: 'sass-loader',
             options: {
               includePaths: [path.resolve(__dirname, 'src', 'scss')],
+              sourceMap: true
+            }
+          }
+        ]
+      },
+      {
+        test: RE_CSSMODULE,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              plugins: () => [ require('autoprefixer') ],
               sourceMap: true
             }
           }
