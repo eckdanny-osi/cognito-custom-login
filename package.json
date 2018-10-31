@@ -36,9 +36,8 @@
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
   "author": "CWDS",
-  "license": "AGPL 3.0",
+  "license": "AGPL-3.0",
   "dependencies": {
-    "@cwds/components": "^0.2.0-alpha.18",
     "amazon-cognito-identity-js": "^2.0.0",
     "dotenv-webpack": "1.5.7",
     "object-assign": "4.1.0",
