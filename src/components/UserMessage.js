@@ -9,7 +9,6 @@ const UserMessage = ({errorMessage, successMessage}) => {
       {successMessage && <Alert className='successMessage-customizable' color='success'>{successMessage}</Alert>}
       <br />
     </React.Fragment>
-
   )
 }
 
